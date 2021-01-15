@@ -1,8 +1,8 @@
 require_relative 'enigma'
-
+include Convertable
 enigma = Enigma.new
 file = File.open("./lib/#{ARGV[0]}", 'r')
-encrypt_file = File.open("./lib/#{ARGV[1]}", 'w')
+decrypt_file = File.open("./lib/#{ARGV[1]}", 'w')
 message = file.read.chomp
 
 decrypt  = enigma.decrypt(message, ARGV[2], ARGV[3])
