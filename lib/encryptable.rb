@@ -4,11 +4,11 @@ module Encryptable
 
   def encrypt_message(message)
     split_message(message).map do |section|
-      encrypt(section)
+      encrypt_section(section)
     end.join
   end
 
-  def encrypt(section)
+  def encrypt_section(section)
     section.each_with_index.map do |letter, index|
       letter == " " if letter == "_"
       encode(letter, get_index_shift(index))

@@ -19,7 +19,7 @@ class EncryptableTest < Minitest::Test
   end
 
   def test_encrypt_section
-    assert_equal ["k", "e", "d", "e"], @enigma.encrypt(["h", "e", "l", "l"])
+    assert_equal ["k", "e", "d", "e"], @enigma.encrypt_section(["h", "e", "l", "l"])
   end
 
   def test_get_index_shift
