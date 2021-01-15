@@ -42,7 +42,7 @@ class EnigmaTest < Minitest::Test
     assert_equal encrypt_hash, enigma.decrypt("keder ohulw", "02715","040895")
   end
 
-  def test_decryptwith_optional_arguements
+  def test_decrypt_with_optional_arguements
     enigma = Enigma.new
     encrypt_hash = {
       decryption: "hello world",
