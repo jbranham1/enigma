@@ -5,7 +5,11 @@ class Enigma
   include Encryptable
   include Convertable
 
-  def encrypt(message, key, date = Date.today)
+  def generate_number
+    rand(10 ** 5).to_s.rjust(5, '0')
+  end
+
+  def encrypt(message, key = generate_number, date = Date.today)
     {
       encryption: encrypt_message(message, :encrypt),
       key: key,
