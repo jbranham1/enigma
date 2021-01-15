@@ -21,4 +21,8 @@ class Enigma
       date
     end
   end
+
+  def generate_number
+    rand(10 ** 5)
+  end
 end
