@@ -2,17 +2,21 @@ module Encryptable
   ALPHABET = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
     "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
 
-  def encrypt_message(message)
+  def encrypt_message(message, type)
     split_message(message).map do |section|
-      encrypt_section(section)
+      encrypt_section(section, type)
     end.join
   end
 
-  def encrypt_section(section)
+  def encrypt_section(section, type)
     section.each_with_index.map do |letter, index|
       letter == " " if letter == "_"
       if letter.match(/^[[:alpha:][:blank:]]+$/)
+        if type == :encrypt
         encode(letter, get_index_shift(index))
+        else
+        encode(letter, -get_index_shift(index))
+        end
       else
         letter
       end

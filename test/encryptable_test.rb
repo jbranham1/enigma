@@ -15,11 +15,13 @@ class EncryptableTest < Minitest::Test
   end
 
   def test_encrypt_message
-    assert_equal "keder ohulw", @enigma.encrypt_message("hello world")
+    result = @enigma.encrypt_message("hello world", :encrypt)
+    assert_equal "keder ohulw", result
   end
 
   def test_encrypt_section
-    assert_equal ["k", "e", "d", "e"], @enigma.encrypt_section(["h", "e", "l", "l"])
+    result = @enigma.encrypt_section(["h", "e", "l", "l"], :encrypt)
+    assert_equal ["k", "e", "d", "e"], result
   end
 
   def test_get_index_shift
