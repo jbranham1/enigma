@@ -5,13 +5,18 @@ class Enigma
   include Encryptable
   def encrypt(message, key, date = Date.today)
     {
-      encryption: encrypt_message(message),
+      encryption: encrypt_message(message, :encrypt),
       key: key,
       date: convert_date(date)
     }
   end
 
-  def decrypt
+  def decrypt(message, key, date = Date.today)
+    {
+      decryption: encrypt_message(message, :decrypt),
+      key: key,
+      date: convert_date(date)
+    }
   end
 
   private
