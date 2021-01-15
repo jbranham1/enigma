@@ -1,9 +1,6 @@
 require 'date'
 
 class Enigma
-  def initialize
-  end
-
   def encrypt(message, key, date = Date.today)
     #todo: encyrpt message
     #todo: generate random key as optional argument
