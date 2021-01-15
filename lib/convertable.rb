@@ -8,4 +8,8 @@ module Convertable
       date
     end
   end
+
+  def convert_letter(letter)
+    letter.downcase
+  end
 end
