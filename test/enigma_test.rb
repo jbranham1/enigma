@@ -10,7 +10,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_encrypt
-    skip
     enigma = Enigma.new
     encrypt_hash = {
       encryption: "keder ohulw",
@@ -22,6 +21,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_encrypt_with_optional_arguements
+    skip
     enigma = Enigma.new
     #todo: stub out key and date when optional
     encrypt_hash = {
