@@ -16,13 +16,9 @@ class Enigma
 
   def convert_date(date)
     if date.is_a?(Date)
-      date.strftime('%m%d%y')
+      date.strftime('%d%m%y')
     else
       date
     end
-  end
-
-  def generate_number
-    rand(10 ** 5)
   end
 end
