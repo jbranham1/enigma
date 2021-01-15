@@ -16,6 +16,6 @@ class EncryptableTest < Minitest::Test
   end
 
   def test_convert_letter
-    assert_equal "h", @enigma.convert_letter("H")
+    assert_equal 'h', @enigma.convert_letter('H')
   end
 end

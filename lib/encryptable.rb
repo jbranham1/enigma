@@ -1,6 +1,6 @@
 module Encryptable
-  ALPHABET = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-    "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
+  ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']
 
     def encrypt_message(message, type)
       split_message(message).map do |section|
@@ -41,6 +41,6 @@ module Encryptable
     end
 
     def split_message(message)
-      message_split = message.split("").each_slice(4).to_a
+      message_split = message.split('').each_slice(4).to_a
     end
   end

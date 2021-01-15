@@ -15,28 +15,28 @@ class EncryptableTest < Minitest::Test
   end
 
   def test_encrypt_message
-    result = @enigma.encrypt_message("hello world", :encrypt)
-    assert_equal "keder ohulw", result
+    result = @enigma.encrypt_message('hello world', :encrypt)
+    assert_equal 'keder ohulw', result
   end
 
   def test_encrypt_section
-    result = @enigma.encrypt_section(["h", "e", "l", "l"], :encrypt)
-    assert_equal ["k", "e", "d", "e"], result
+    result = @enigma.encrypt_section(['h', 'e', 'l', 'l'], :encrypt)
+    assert_equal ['k', 'e', 'd', 'e'], result
   end
 
   def test_encrypt_section_with_other_characters
-    result = @enigma.encrypt_section(["h", "e", "l", "!"], :encrypt)
-    assert_equal ["k", "e", "d", "!"], result
+    result = @enigma.encrypt_section(['h', 'e', 'l', '!'], :encrypt)
+    assert_equal ['k', 'e', 'd', '!'], result
   end
 
   def test_encrypt_message_with_decrypt
-    result = @enigma.encrypt_message("keder ohulw", :decrypt)
-    assert_equal "hello world", result
+    result = @enigma.encrypt_message('keder ohulw', :decrypt)
+    assert_equal 'hello world', result
   end
 
   def test_encrypt_section
-    result = @enigma.encrypt_section(["k", "e", "d", "e"], :decrypt)
-    assert_equal ["h", "e", "l", "l"], result
+    result = @enigma.encrypt_section(['k', 'e', 'd', 'e'], :decrypt)
+    assert_equal ['h', 'e', 'l', 'l'], result
   end
 
   def test_get_index_shift
@@ -44,7 +44,7 @@ class EncryptableTest < Minitest::Test
   end
 
   def test_encode
-    assert_equal "k", @enigma.encode("h", 3)
+    assert_equal 'k', @enigma.encode('h', 3)
   end
 
   def test_split_message
