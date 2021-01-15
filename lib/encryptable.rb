@@ -11,7 +11,11 @@ module Encryptable
   def encrypt_section(section)
     section.each_with_index.map do |letter, index|
       letter == " " if letter == "_"
-      encode(letter, get_index_shift(index))
+      if letter.match(/^[[:alpha:][:blank:]]+$/)
+        encode(letter, get_index_shift(index))
+      else
+        letter
+      end
     end
   end
 
