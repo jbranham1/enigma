@@ -24,6 +24,11 @@ class EncryptableTest < Minitest::Test
     assert_equal ["k", "e", "d", "e"], result
   end
 
+  def test_encrypt_section_with_other_characters
+    result = @enigma.encrypt_section(["h", "e", "l", "!"], :encrypt)
+    assert_equal ["k", "e", "d", "!"], result
+  end
+
   def test_encrypt_message_with_decrypt
     result = @enigma.encrypt_message("keder ohulw", :decrypt)
     assert_equal "hello world", result

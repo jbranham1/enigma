@@ -64,4 +64,10 @@ class EnigmaTest < Minitest::Test
     enigma.stubs(:convert_date).returns("040895")
     assert_equal encrypt_hash, enigma.decrypt("keder ohulw", "02715")
   end
+
+  def test_generate_number
+    enigma = Enigma.new
+    assert_equal 5, enigma.generate_number.length
+    assert_equal String, enigma.generate_number.class
+  end
 end
