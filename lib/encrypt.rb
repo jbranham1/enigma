@@ -9,6 +9,6 @@ file = File.open("./lib/#{ARGV[0]}", 'r')
 encrypt_file = File.open("./lib/#{ARGV[1]}", 'w')
 message = file.read.chomp
 
-encryption = enigma.encrypt(message, generate_number)
-encrypt_file.write(encryption)
-puts "Created '#{ARGV[1]}' with the key #{encryption[:key]} and date #{encryption[:date]}"
+encrypt= enigma.encrypt(message, generate_number)
+encrypt_file.write(encrypt[:encryption])
+puts "Created '#{ARGV[1]}' with the key #{encrypt[:key]} and date #{encrypt[:date]}"
