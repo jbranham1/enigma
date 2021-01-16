@@ -25,8 +25,6 @@ class EncryptableTest < Minitest::Test
   end
 
   def test_get_shifts
-    keys = @enigma.get_keys('02715')
-    offsets = @enigma.get_offsets('040895')
     offset_hash =
     {
       a: 3,
@@ -34,36 +32,46 @@ class EncryptableTest < Minitest::Test
       c: 73,
       d: 20
     }
-    assert_equal offset_hash, @enigma.get_shifts(keys, offsets)
+    assert_equal offset_hash, @enigma.get_shifts('02715','040895')
+  end
+
+  def test_index_shift
+    @enigma.get_shifts('02715','040895')
+    hash = {
+      '0' => 3,
+      '1'=> 27,
+      '2'=> 73,
+      '3'=> 20
+    }
+    assert_equal hash, @enigma.index_shift
   end
 
   def test_encrypt_message
-    result = @enigma.encrypt_message('hello world', :encrypt)
+    result = @enigma.encrypt_message('hello world', '02715','040895',:encrypt)
     assert_equal 'keder ohulw', result
   end
 
   def test_encrypt_section
+    @enigma.get_shifts('02715','040895')
     result = @enigma.encrypt_section(['h', 'e', 'l', 'l'], :encrypt)
     assert_equal ['k', 'e', 'd', 'e'], result
   end
 
   def test_encrypt_section_with_other_characters
+    @enigma.get_shifts('02715','040895')
     result = @enigma.encrypt_section(['h', 'e', 'l', '!'], :encrypt)
     assert_equal ['k', 'e', 'd', '!'], result
   end
 
   def test_encrypt_message_with_decrypt
-    result = @enigma.encrypt_message('keder ohulw', :decrypt)
+    result = @enigma.encrypt_message('keder ohulw', '02715','040895', :decrypt)
     assert_equal 'hello world', result
   end
 
-  def test_encrypt_section
+  def test_encrypt_section_decrypt
+    @enigma.get_shifts('02715','040895')
     result = @enigma.encrypt_section(['k', 'e', 'd', 'e'], :decrypt)
     assert_equal ['h', 'e', 'l', 'l'], result
-  end
-
-  def test_get_index_shift
-    assert_equal 3, @enigma.get_index_shift(0)
   end
 
   def test_encode

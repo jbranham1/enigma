@@ -11,7 +11,7 @@ class Enigma
 
   def encrypt(message, key = generate_number, date = Date.today)
     {
-      encryption: encrypt_message(message, :encrypt),
+      encryption: encrypt_message(message, key, convert_date(date), :encrypt),
       key: key,
       date: convert_date(date)
     }
@@ -19,7 +19,7 @@ class Enigma
 
   def decrypt(message, key, date = Date.today)
     {
-      decryption: encrypt_message(message, :decrypt),
+      decryption: encrypt_message(message, key, convert_date(date), :decrypt),
       key: key,
       date: convert_date(date)
     }
