@@ -8,6 +8,15 @@ module Encryptable
       end
     end
 
+    def get_offsets(date)
+      date = date.to_i
+      square = date * date
+      last_four = square.to_s[-4..-1]
+      last_four.split("").map do |x|
+        x.to_i
+      end
+    end
+
     def encrypt_message(message, type)
       split_message(message).map do |section|
         encrypt_section(section, type)

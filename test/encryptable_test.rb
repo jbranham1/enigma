@@ -19,6 +19,11 @@ class EncryptableTest < Minitest::Test
     assert_equal [02, 27, 71, 15], result
   end
 
+  def test_get_offsets
+    result = @enigma.get_offsets('040895')
+    assert_equal [1, 0, 2, 5], result
+  end
+
   def test_encrypt_message
     result = @enigma.encrypt_message('hello world', :encrypt)
     assert_equal 'keder ohulw', result
