@@ -10,16 +10,18 @@ class Enigma
   end
 
   def encrypt(message, key = generate_number, date = Date.today)
+    get_shifts(key, convert_date(date))
     {
-      encryption: encrypt_message(message, key, convert_date(date), :encrypt),
+      encryption: encrypt_message(message , :encrypt),
       key: key,
       date: convert_date(date)
     }
   end
 
   def decrypt(message, key, date = Date.today)
+    get_shifts(key, convert_date(date))
     {
-      decryption: encrypt_message(message, key, convert_date(date), :decrypt),
+      decryption: encrypt_message(message, :decrypt),
       key: key,
       date: convert_date(date)
     }

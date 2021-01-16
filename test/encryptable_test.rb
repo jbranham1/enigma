@@ -47,7 +47,8 @@ class EncryptableTest < Minitest::Test
   end
 
   def test_encrypt_message
-    result = @enigma.encrypt_message('hello world', '02715','040895',:encrypt)
+    @enigma.get_shifts('02715','040895')
+    result = @enigma.encrypt_message('hello world', :encrypt)
     assert_equal 'keder ohulw', result
   end
 
@@ -64,7 +65,8 @@ class EncryptableTest < Minitest::Test
   end
 
   def test_encrypt_message_with_decrypt
-    result = @enigma.encrypt_message('keder ohulw', '02715','040895', :decrypt)
+    @enigma.get_shifts('02715','040895')
+    result = @enigma.encrypt_message('keder ohulw', :decrypt)
     assert_equal 'hello world', result
   end
 
