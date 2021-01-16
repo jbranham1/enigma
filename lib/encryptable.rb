@@ -17,6 +17,15 @@ module Encryptable
       end
     end
 
+    def get_shifts(keys, offsets)
+      {
+        a: keys[0] + offsets[0],
+        b: keys[1] + offsets[1],
+        c: keys[2] + offsets[2],
+        d: keys[3] + offsets[3]
+      }
+    end
+
     def encrypt_message(message, type)
       split_message(message).map do |section|
         encrypt_section(section, type)

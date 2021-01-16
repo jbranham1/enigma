@@ -24,6 +24,19 @@ class EncryptableTest < Minitest::Test
     assert_equal [1, 0, 2, 5], result
   end
 
+  def test_get_shifts
+    keys = @enigma.get_keys('02715')
+    offsets = @enigma.get_offsets('040895')
+    offset_hash =
+    {
+      a: 3,
+      b: 27,
+      c: 73,
+      d: 20
+    }
+    assert_equal offset_hash, @enigma.get_shifts(keys, offsets)
+  end
+
   def test_encrypt_message
     result = @enigma.encrypt_message('hello world', :encrypt)
     assert_equal 'keder ohulw', result
