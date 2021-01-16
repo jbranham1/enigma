@@ -2,6 +2,12 @@ module Encryptable
   ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']
 
+    def get_keys(key)
+      key.split("").each_cons(2).map do |cons|
+        cons.join.to_i
+      end
+    end
+
     def encrypt_message(message, type)
       split_message(message).map do |section|
         encrypt_section(section, type)
@@ -29,7 +35,7 @@ module Encryptable
         27
       elsif index == 2
         73
-      elsif index ==3
+      elsif index == 3
         20
       end
     end

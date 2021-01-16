@@ -14,6 +14,11 @@ class EncryptableTest < Minitest::Test
     assert_instance_of TestClass, @enigma
   end
 
+  def test_get_keys
+    result = @enigma.get_keys('02715')
+    assert_equal [02, 27, 71, 15], result
+  end
+
   def test_encrypt_message
     result = @enigma.encrypt_message('hello world', :encrypt)
     assert_equal 'keder ohulw', result
