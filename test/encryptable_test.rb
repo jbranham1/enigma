@@ -14,65 +14,38 @@ class EncryptableTest < Minitest::Test
     assert_instance_of TestClass, @enigma
   end
 
-  def test_get_keys
-    result = @enigma.get_keys('02715')
-    assert_equal [02, 27, 71, 15], result
-  end
-
-  def test_get_offsets
-    result = @enigma.get_offsets('040895')
-    assert_equal [1, 0, 2, 5], result
-  end
-
-  def test_get_shifts
-    offset_hash =
-    {
-      a: 3,
-      b: 27,
-      c: 73,
-      d: 20
-    }
-    assert_equal offset_hash, @enigma.get_shifts('02715','040895')
-  end
-
-  def test_index_shift
-    @enigma.get_shifts('02715','040895')
-    hash = {
-      '0' => 3,
-      '1'=> 27,
-      '2'=> 73,
-      '3'=> 20
-    }
-    assert_equal hash, @enigma.index_shift
-  end
-
   def test_encrypt_message
-    @enigma.get_shifts('02715','040895')
-    result = @enigma.encrypt_message('hello world', :encrypt)
+    @enigma.get_type(:encrypt)
+    @enigma.find_shifts('02715','040895')
+    result = @enigma.encrypt_message('hello world')
     assert_equal 'keder ohulw', result
   end
 
   def test_encrypt_section
-    @enigma.get_shifts('02715','040895')
-    result = @enigma.encrypt_section(['h', 'e', 'l', 'l'], :encrypt)
+    @enigma.get_type(:encrypt)
+    @enigma.find_shifts('02715','040895')
+    result = @enigma.encrypt_section(['h', 'e', 'l', 'l'])
     assert_equal ['k', 'e', 'd', 'e'], result
   end
 
   def test_encrypt_section_with_other_characters
-    @enigma.get_shifts('02715','040895')
-    result = @enigma.encrypt_section(['h', 'e', 'l', '!'], :encrypt)
+    @enigma.get_type(:encrypt)
+    @enigma.find_shifts('02715','040895')
+    result = @enigma.encrypt_section(['h', 'e', 'l', '!'])
     assert_equal ['k', 'e', 'd', '!'], result
   end
 
   def test_encrypt_message_with_decrypt
-    @enigma.get_shifts('02715','040895')
-    result = @enigma.encrypt_message('keder ohulw', :decrypt)
+    @enigma.get_type(:decrypt)
+    @enigma.find_shifts('02715','040895')
+    result = @enigma.encrypt_message('keder ohulw')
     assert_equal 'hello world', result
   end
 
   def test_encrypt_section_decrypt
-    @enigma.get_shifts('02715','040895')
-    result = @enigma.encrypt_section(['k', 'e', 'd', 'e'], :decrypt)
+    @enigma.get_type(:decrypt)
+    @enigma.find_shifts('02715','040895')
+    result = @enigma.encrypt_section(['k', 'e', 'd', 'e'])
     assert_equal ['h', 'e', 'l', 'l'], result
   end
 
