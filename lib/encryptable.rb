@@ -37,6 +37,6 @@ module Encryptable
   def encode(letter, number)
     shifted_array = ALPHABET.rotate(number)
     index = ALPHABET.find_index(letter)
-    letter = shifted_array[index]
+    shifted_array[index]
   end
 end
